@@ -1,4 +1,3 @@
-import { slides } from '@/data';
 import sliderStyles from '@/styles/Slider.module.scss';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

@@ -8,6 +8,8 @@
   .bgImg {
     z-index: -1;
     padding: 1em;
+    object-fit: cover;
+    object-position: center 20%;
   }
 
   h3 {
