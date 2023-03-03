@@ -3,8 +3,9 @@
 $slider-pad: 5rem;
 
 .container {
+  margin-bottom: 4em;
   h2 {
-    margin: 2em 4em 0;
+    margin: 2em 4em 1em;
   }
   .carousel {
     position: relative;
@@ -16,25 +17,25 @@ $slider-pad: 5rem;
     &:hover button > * {
       visibility: visible;
     }
-  }
-  button {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    z-index: 99;
-    width: 4rem;
-    background-color: rgba($bg-primary, 0.5);
-    color: $text-primary;
-    border: 0;
-    & > * {
-      visibility: hidden;
-    }
-    &:hover > * {
-      transform: scale(1.3);
-    }
-    &:hover {
-      background-color: rgba($bg-primary, 0.7);
+    & > button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 99;
+      width: 4rem;
+      background-color: rgba($bg-primary, 0.5);
+      color: $text-primary;
+      border: 0;
+      & > * {
+        visibility: hidden;
+      }
+      &:hover > * {
+        transform: scale(1.3);
+      }
+      &:hover {
+        background-color: rgba($bg-primary, 0.7);
+      }
     }
   }
   .left {

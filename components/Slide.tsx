@@ -1,5 +1,6 @@
 import slideStyles from '@/styles/Slide.module.scss';
 import Image from 'next/image';
+import HoverCard from './HoverCard';
 
 export type SlideType = {
   title: string;
@@ -8,6 +9,11 @@ export type SlideType = {
   top10: boolean;
   newSeason: boolean;
   newEpisode: boolean;
+  tvRating: string;
+  genre: string[];
+  hd: boolean;
+  duration: string;
+  match: number;
 };
 
 type SlideProps = {
@@ -25,6 +31,9 @@ const Slide = ({ slide, maxSlides }: SlideProps) => {
       }}
     >
       <Image src={slide.img} alt="" fill className={slideStyles.bgImg} />
+      <div className={slideStyles.hoverCard}>
+        <HoverCard slide={slide} />
+      </div>
       <h3>{slide.title}</h3>
       {slide.netflix && (
         <div>
