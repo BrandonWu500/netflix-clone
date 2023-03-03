@@ -1,0 +1,28 @@
+@import './variables';
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1em;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 1s ease;
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .logo {
+    color: $accent;
+    text-transform: uppercase;
+  }
+}
+
+.scrolled {
+  background-color: $bg-primary;
+}

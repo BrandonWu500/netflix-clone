@@ -1,0 +1,52 @@
+@import './variables';
+
+$slider-pad: 5rem;
+
+.container {
+  margin: 4em;
+  h2 {
+    margin-bottom: 1em;
+  }
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &:hover button > * {
+      visibility: visible;
+    }
+  }
+  button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 99;
+    width: 4rem;
+    background-color: rgba($bg-primary, 0.5);
+    color: $text-primary;
+    border: 0;
+    & > * {
+      visibility: hidden;
+    }
+    &:hover > * {
+      transform: scale(1.3);
+    }
+    &:hover {
+      background-color: rgba($bg-primary, 0.7);
+    }
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    right: 0;
+  }
+  .slides {
+    display: flex;
+    width: calc(100% - 2 * $slider-pad);
+    transition: transform 1s ease;
+  }
+}
