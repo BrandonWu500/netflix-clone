@@ -7,9 +7,10 @@ import Slide, { SlideType } from './Slide';
 
 type SliderProps = {
   slides: SlideType[];
+  title: string;
 };
 
-const Slider = ({ slides }: SliderProps) => {
+const Slider = ({ slides, title }: SliderProps) => {
   const [slideIdx, setSlideIdx] = useState(0);
   const [hasMoved, setHasMoved] = useState(false);
   const slidesRef = useRef<HTMLDivElement>(null);
@@ -69,7 +70,7 @@ const Slider = ({ slides }: SliderProps) => {
   };
   return (
     <div className={sliderStyles.container}>
-      <h2>Trending Now</h2>
+      <h2>{title}</h2>
       <div className={sliderStyles.carousel}>
         {hasMoved && (
           <button

@@ -51,6 +51,7 @@ const Navbar = () => {
               alt=""
               width={48}
               height={48}
+              style={{ borderRadius: '5px' }}
             />
           </li>
           <li>

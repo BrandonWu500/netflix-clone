@@ -1,11 +1,84 @@
+@import './variables';
+
 .container {
   position: relative;
-
   aspect-ratio: 16 / 9;
   border-radius: 5px;
 
-  img {
+  .bgImg {
     z-index: -1;
     padding: 1em;
+  }
+
+  h3 {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: $text-primary;
+    text-shadow: 0 0 5px black;
+    font-size: 2rem;
+  }
+
+  .logo {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+
+  .top10 {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-align: center;
+    background-color: $accent;
+    padding: 3px;
+    font-size: 0.8rem;
+    strong {
+      font-size: 1rem;
+    }
+  }
+
+  .newSeason {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+    p {
+      background-color: $accent;
+      font-weight: 500;
+      padding: 0.5em;
+      font-size: 0.9rem;
+    }
+  }
+
+  .newEpisode {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+    .group {
+      display: flex;
+      align-items: center;
+    }
+    p {
+      font-weight: 500;
+      padding: 0.5em;
+      font-size: 0.9rem;
+    }
+    p:first-child {
+      background-color: $accent;
+    }
+    p:last-child {
+      background-color: $text-primary;
+      color: $bg-primary;
+    }
   }
 }

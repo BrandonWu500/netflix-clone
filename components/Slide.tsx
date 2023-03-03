@@ -24,8 +24,40 @@ const Slide = ({ slide, maxSlides }: SlideProps) => {
         flex: `0 0 calc(100% / ${maxSlides})`,
       }}
     >
-      <Image src={slide.img} alt="" fill />
-      {/* <h3>{slide.title}</h3> */}
+      <Image src={slide.img} alt="" fill className={slideStyles.bgImg} />
+      <h3>{slide.title}</h3>
+      {slide.netflix && (
+        <div>
+          <Image
+            src="/images/netflix-logo.png"
+            alt=""
+            width={32}
+            height={32}
+            className={slideStyles.logo}
+          />
+        </div>
+      )}
+      {slide.top10 && (
+        <div className={slideStyles.top10}>
+          <p>TOP</p>
+          <p>
+            <strong>10</strong>
+          </p>
+        </div>
+      )}
+      {slide.newSeason && (
+        <div className={slideStyles.newSeason}>
+          <p>New Season</p>
+        </div>
+      )}
+      {slide.newEpisode && (
+        <div className={slideStyles.newEpisode}>
+          <div className={slideStyles.group}>
+            <p>New Episode</p>
+            <p>Watch Now</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
