@@ -123,3 +123,8 @@ export const newSlides = [
     match: 98,
   },
 ];
+
+export const videos = [
+  { id: 1, vid: '/videos/surf.mp4' },
+  { id: 2, vid: '/videos/wolf.mp4' },
+];

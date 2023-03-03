@@ -5,6 +5,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
 import { SlideType } from './Slide';
+import Link from 'next/link';
 
 type HoverCardProps = {
   slide: SlideType;
@@ -19,9 +20,11 @@ const HoverCard = ({ slide }: HoverCardProps) => {
       <section className={hoverCardStyles.textContainer}>
         <div className={hoverCardStyles.btns}>
           <div className={hoverCardStyles.left}>
-            <button>
-              <PlayArrowIcon />
-            </button>
+            <Link href="/watch/2">
+              <button>
+                <PlayArrowIcon />
+              </button>
+            </Link>
             <button>
               <AddIcon />
             </button>

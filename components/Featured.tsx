@@ -2,6 +2,7 @@ import featuredStyles from '@/styles/Featured.module.scss';
 import Image from 'next/image';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
+import Link from 'next/link';
 
 const Featured = () => {
   return (
@@ -24,9 +25,11 @@ const Featured = () => {
           sed!
         </p>
         <div className={featuredStyles.btns}>
-          <button className={featuredStyles.play}>
-            <PlayArrowIcon color="inherit" fontSize="large" /> Play
-          </button>
+          <Link href="/watch/1">
+            <button className={featuredStyles.play}>
+              <PlayArrowIcon color="inherit" fontSize="large" /> Play
+            </button>
+          </Link>
           <button className={featuredStyles.info}>
             <InfoIcon color="inherit" fontSize="large" /> More Info
           </button>
