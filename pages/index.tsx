@@ -12,7 +12,9 @@ export default function Home({ slides }: HomeProps) {
   return (
     <div className={homeStyles.container}>
       <Featured />
-      <Slider slides={slides} />
+      <Slider slides={slides} title="Trending Now" />
+      <Slider slides={slides} title="My List" />
+      <Slider slides={slides} title="New Releases" />
     </div>
   );
 }

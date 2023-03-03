@@ -17,15 +17,10 @@ type SlideProps = {
 
 const Slide = ({ slide, maxSlides }: SlideProps) => {
   return (
-    <div
-      className={slideStyles.container}
-      style={{
-        maxWidth: `calc(100% / ${maxSlides})`,
-        flex: `0 0 calc(100% / ${maxSlides})`,
-      }}
-    >
+    <div className={slideStyles.container}>
       <Image src={slide.img} alt="" fill />
-      {/* <h3>{slide.title}</h3> */}
+
+      <h3>{slide.title}</h3>
     </div>
   );
 };

@@ -3,16 +3,14 @@
 $slider-pad: 5rem;
 
 .container {
-  margin: 4em;
+  margin-left: 50px;
   h2 {
-    margin-bottom: 1em;
+    margin: 2em 50px 0;
   }
   .carousel {
     position: relative;
     overflow: hidden;
     width: 100%;
-    display: flex;
-    justify-content: center;
 
     &:hover button > * {
       visibility: visible;
@@ -46,7 +44,8 @@ $slider-pad: 5rem;
   }
   .slides {
     display: flex;
-    width: calc(100% - 2 * $slider-pad);
+    gap: 1rem;
+    width: max-content;
     transition: transform 1s ease;
   }
 }

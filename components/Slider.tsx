@@ -7,9 +7,10 @@ import Slide, { SlideType } from './Slide';
 
 type SliderProps = {
   slides: SlideType[];
+  title: string;
 };
 
-const Slider = ({ slides }: SliderProps) => {
+const Slider = ({ slides, title }: SliderProps) => {
   const [slideIdx, setSlideIdx] = useState(0);
   const [hasMoved, setHasMoved] = useState(false);
   const slidesRef = useRef<HTMLDivElement>(null);
@@ -23,35 +24,29 @@ const Slider = ({ slides }: SliderProps) => {
       const { innerWidth } = window;
       const maxSlideCount = Math.floor(innerWidth / 350);
       setMaxSlides(maxSlideCount);
-      /* if (slideIdx >= maxSlideCount - 1) {
-        console.log(slideIdx);
-        console.log(maxSlideCount);
-        setSlideIdx(maxSlideCount);
-      } */
     };
-    // window.addEventListener('resize', calcMaxSlides);
     calcMaxSlides();
-    // return () => window.removeEventListener('resize', calcMaxSlides);
   }, []);
 
   const moveSlider = (direction: string) => {
     if (!slidesRef.current) {
       return;
     }
-    /* let distance = slidesRef.current.getBoundingClientRect().x */
+    let distance = slidesRef.current?.getBoundingClientRect().x - 50;
+    /* console.log(distance); */
     setHasMoved(true);
     if (direction === 'left') {
       if (slideIdx <= 0) {
         // edge case
         const setsOfSlides = Math.floor(slides.length / maxSlides);
-        setSlideIdx(setsOfSlides - 1);
-        slidesRef.current.style.transform = `translateX(${
-          -(setsOfSlides - 1) * 100
-        }%)`;
+        setSlideIdx(setsOfSlides);
+        slidesRef.current.style.transform = `translateX(calc(${
+          -300 * (slides.length - maxSlides) + distance
+        }px - 1rem * ${slides.length - maxSlides}))`;
       } else {
-        slidesRef.current.style.transform = `translateX(${
-          -(slideIdx - 1) * 100
-        }%)`;
+        slidesRef.current.style.transform = `translateX(calc(${
+          300 * maxSlides + distance
+        }px + 1rem * ${maxSlides}))`;
         setSlideIdx(slideIdx - 1);
       }
     } else if (direction === 'right') {
@@ -60,16 +55,16 @@ const Slider = ({ slides }: SliderProps) => {
         setSlideIdx(0);
         slidesRef.current.style.transform = `translateX(0)`;
       } else {
-        slidesRef.current.style.transform = `translateX(calc(${
-          -(slideIdx + 1) * 100
-        }%))`;
+        slidesRef.current.style.transform = `translateX(calc((${
+          -300 * maxSlides + distance
+        }px - 1rem * ${maxSlides}))`;
         setSlideIdx(slideIdx + 1);
       }
     }
   };
   return (
     <div className={sliderStyles.container}>
-      <h2>Trending Now</h2>
+      <h2>{title}</h2>
       <div className={sliderStyles.carousel}>
         {hasMoved && (
           <button
