@@ -1,0 +1,5 @@
+@import './variables';
+
+.container {
+  background: linear-gradient(to bottom, $bg-primary, $bg-lighter);
+}

@@ -38,12 +38,12 @@ const Navbar = () => {
       <div className={navbarStyles.item}>
         <ul>
           <li>
-            <SearchIcon />
+            <SearchIcon fontSize="large" />
           </li>
           <li>Kids</li>
           <li>DVD</li>
           <li>
-            <NotificationsIcon />
+            <NotificationsIcon fontSize="large" />
           </li>
           <li>
             <Image
