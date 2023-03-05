@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import {
   createContext,
   ReactElement,
@@ -17,10 +18,12 @@ export const AUTH_INIT_STATE = {
 
 const useAuthContext = (initState: AuthStateType) => {
   const [state, dispatch] = useReducer(AuthReducer, AUTH_INIT_STATE);
+  const router = useRouter();
 
   useEffect(() => {
     //@ts-ignore
     const user = JSON.parse(localStorage.getItem('user')) ?? null;
+    console.log(user);
     user && dispatch({ type: AUTH_ACTION_TYPE.LOGIN, payload: user });
   }, []);
 
@@ -34,6 +37,8 @@ const useAuthContext = (initState: AuthStateType) => {
 
   const logout = useCallback(() => {
     dispatch({ type: AUTH_ACTION_TYPE.LOGOUT });
+    localStorage.removeItem('user');
+    router.push('/register');
   }, []);
 
   return {

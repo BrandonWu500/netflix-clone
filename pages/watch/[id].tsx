@@ -1,7 +1,10 @@
 import { server } from '@/config';
+import { AuthContext } from '@/context/auth/AuthContext';
 import watchStyles from '@/styles/Watch.module.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { CircularProgress } from '@mui/material';
 import Link from 'next/link';
+import { useContext } from 'react';
 
 export type VideoType = {
   id: number;
@@ -13,6 +16,15 @@ type WatchProps = {
 };
 
 const watch = ({ video }: WatchProps) => {
+  const {
+    state: { user },
+  } = useContext(AuthContext);
+  if (!user)
+    return (
+      <div>
+        <CircularProgress size="6rem" />
+      </div>
+    );
   return (
     <div className={watchStyles.container}>
       <Link href="/" className={watchStyles.link}>

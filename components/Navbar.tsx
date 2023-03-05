@@ -2,12 +2,17 @@ import navbarStyles from '@/styles/Navbar.module.scss';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '@/context/auth/AuthContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const { logout } = useContext(AuthContext);
   useEffect(() => {
     window.onscroll = () => {
       setIsScrolled(window.scrollY === 0 ? false : true);
@@ -54,8 +59,29 @@ const Navbar = () => {
               style={{ borderRadius: '5px' }}
             />
           </li>
-          <li>
-            <ArrowDropDownIcon fontSize="large" />
+          <li
+            className={navbarStyles.dropdown}
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
+            {showDropdown ? (
+              <ArrowDropUpIcon fontSize="large" />
+            ) : (
+              <ArrowDropDownIcon fontSize="large" />
+            )}
+            {showDropdown && (
+              <div className={navbarStyles.dropdownMenu}>
+                <ul>
+                  <li>
+                    <PersonOutlineIcon />
+                    Account
+                  </li>
+                  <li>
+                    <HelpOutlineIcon /> Help Center
+                  </li>
+                  <li onClick={logout}>Sign out of Netflix</li>
+                </ul>
+              </div>
+            )}
           </li>
         </ul>
       </div>

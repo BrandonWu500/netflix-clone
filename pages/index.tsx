@@ -2,7 +2,10 @@ import Featured from '@/components/Featured';
 import { SlideType } from '@/components/Slide';
 import Slider from '@/components/Slider';
 import { server } from '@/config';
+import { AuthContext } from '@/context/auth/AuthContext';
 import homeStyles from '@/styles/Home.module.scss';
+import { CircularProgress } from '@mui/material';
+import { useContext, useEffect } from 'react';
 
 type HomeProps = {
   trendSlides: SlideType[];
@@ -15,6 +18,15 @@ export default function Home({
   myListSlides,
   newSlides,
 }: HomeProps) {
+  const {
+    state: { user },
+  } = useContext(AuthContext);
+  if (!user)
+    return (
+      <div>
+        <CircularProgress size="6rem" />
+      </div>
+    );
   return (
     <div className={homeStyles.container}>
       <Featured />

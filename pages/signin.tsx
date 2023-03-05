@@ -1,20 +1,51 @@
+import { AuthContext } from '@/context/auth/AuthContext';
 import signinStyles from '@/styles/Signin.module.scss';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
 
 const signin = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useContext(AuthContext);
+  const router = useRouter();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    login({ user: 'test' });
+    router.push('/');
+  };
   return (
     <div className={signinStyles.container}>
-      <div className="logo">
-        <h2>NETFLIX CLONE</h2>
-      </div>
-      <form action="#" className={signinStyles.form}>
+      <header className={signinStyles.header}>
+        <div className="logo">
+          <h2>NETFLIX CLONE</h2>
+        </div>
+      </header>
+      <form action="#" className={signinStyles.form} onSubmit={handleSubmit}>
         <h1>Sign In</h1>
         <div className={signinStyles.inputs}>
-          <input type="email" name="" id="" required />
-          <input type="password" name="" id="" required />
+          <input type="email" name="" id="" required placeholder="Email" />
+          <div className={signinStyles.pwdWrapper}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name=""
+              id=""
+              required
+              placeholder="Password"
+            />
+            <button
+              className={signinStyles.showPwd}
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              SHOW
+            </button>
+          </div>
         </div>
-        <button type="submit">Sign In</button>
         <div className={signinStyles.bottom}>
+          <button type="submit" className={signinStyles.submit}>
+            Sign In
+          </button>
           <div className={signinStyles.group}>
             <div className={signinStyles.checkGroup}>
               <input type="checkbox" name="" id="" defaultChecked />

@@ -1,5 +1,6 @@
 import { AuthContext } from '@/context/auth/AuthContext';
-import { ReactElement, useContext } from 'react';
+import { useRouter } from 'next/router';
+import { ReactElement, useContext, useEffect } from 'react';
 import Meta from './Meta';
 import Navbar from './Navbar';
 
@@ -11,6 +12,12 @@ const Layout = ({ children }: ChildrenType) => {
   const {
     state: { user },
   } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      router.push('/register');
+    }
+  }, []);
   return (
     <>
       <Meta />

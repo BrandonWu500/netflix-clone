@@ -1,8 +1,22 @@
+import { AuthContext } from '@/context/auth/AuthContext';
 import registerStyles from '@/styles/Register.module.scss';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 const register = () => {
+  const {
+    state: { user },
+  } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    console.log(user);
+    if (user) {
+      router.push('/');
+      console.log('test ');
+    }
+  }, []);
   return (
     <div className={registerStyles.container}>
       <div className={registerStyles.banner}>
