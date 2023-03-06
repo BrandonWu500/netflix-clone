@@ -9,6 +9,11 @@ const signin = () => {
   const { login } = useContext(AuthContext);
   const router = useRouter();
 
+  useEffect(() => {
+    // Prefetch the home page
+    router.prefetch('/');
+  }, []);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     login({ user: 'test' });
