@@ -27,4 +27,4 @@
 
 ### Learn More About the Project on my Portfolio Website
 
-https://brandonwu500.github.io/
+https://brandonwu500.vercel.app/
