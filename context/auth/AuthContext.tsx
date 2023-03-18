@@ -23,9 +23,8 @@ const useAuthContext = (initState: AuthStateType) => {
   useEffect(() => {
     //@ts-ignore
     const user = JSON.parse(localStorage.getItem('user')) ?? null;
-    console.log(user);
     user && dispatch({ type: AUTH_ACTION_TYPE.LOGIN, payload: user });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(state.user));

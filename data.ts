@@ -125,6 +125,6 @@ export const newSlides = [
 ];
 
 export const videos = [
-  { id: 1, vid: '/videos/surf.mp4' },
+  { id: 1, vid: '/videos/wolf.mp4' },
   { id: 2, vid: '/videos/wolf.mp4' },
 ];

@@ -12,16 +12,12 @@ const Signin = () => {
     state: { user },
   } = useContext(AuthContext);
   const router = useRouter();
+
   useEffect(() => {
     if (user) {
       router.push('/');
     }
   }, [user, router]);
-
-  useEffect(() => {
-    // Prefetch the home page
-    router.prefetch('/');
-  }, [router]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -43,7 +39,12 @@ const Signin = () => {
           <h2>NETFLIX CLONE</h2>
         </div>
       </header>
-      <form action="#" className={signinStyles.form} onSubmit={handleSubmit}>
+      <form
+        action="#"
+        method="post"
+        className={signinStyles.form}
+        onSubmit={handleSubmit}
+      >
         <h1>Sign In</h1>
         <div className={signinStyles.inputs}>
           <input type="email" name="" id="" required placeholder="Email" />

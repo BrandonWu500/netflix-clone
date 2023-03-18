@@ -10,6 +10,7 @@ const Register = () => {
   const {
     state: { user },
   } = useContext(AuthContext);
+
   const router = useRouter();
   useEffect(() => {
     if (user) {

@@ -5,6 +5,7 @@ import { server } from '@/config';
 import { AuthContext } from '@/context/auth/AuthContext';
 import homeStyles from '@/styles/Home.module.scss';
 import { CircularProgress } from '@mui/material';
+import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 
 type HomeProps = {
@@ -21,6 +22,15 @@ export default function Home({
   const {
     state: { user },
   } = useContext(AuthContext);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/register');
+    }
+  }, [router, user]);
+
   if (!user)
     return (
       <div>
@@ -38,25 +48,21 @@ export default function Home({
 }
 
 export const getServerSideProps = async () => {
-  try {
-    const [trendRes, myListRes, newRes] = await Promise.all([
-      fetch(`${server}/api/slides/trending`),
-      fetch(`${server}/api/slides/myList`),
-      fetch(`${server}/api/slides/new`),
-    ]);
-    const [trendSlides, myListSlides, newSlides] = await Promise.all([
-      trendRes.json(),
-      myListRes.json(),
-      newRes.json(),
-    ]);
-    return {
-      props: {
-        trendSlides,
-        myListSlides,
-        newSlides,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-  }
+  const [trendRes, myListRes, newRes] = await Promise.all([
+    fetch(`${server}/api/slides/trending`),
+    fetch(`${server}/api/slides/myList`),
+    fetch(`${server}/api/slides/new`),
+  ]);
+  const [trendSlides, myListSlides, newSlides] = await Promise.all([
+    trendRes.json(),
+    myListRes.json(),
+    newRes.json(),
+  ]);
+  return {
+    props: {
+      trendSlides,
+      myListSlides,
+      newSlides,
+    },
+  };
 };

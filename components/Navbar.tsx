@@ -13,6 +13,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const { logout } = useContext(AuthContext);
+
+  const {
+    state: { user },
+  } = useContext(AuthContext);
+
   useEffect(() => {
     window.onscroll = () => {
       setIsScrolled(window.scrollY === 0 ? false : true);
@@ -20,71 +25,75 @@ const Navbar = () => {
     };
   }, []);
   return (
-    <div
-      className={
-        isScrolled
-          ? `${navbarStyles.container} ${navbarStyles.scrolled}`
-          : navbarStyles.container
-      }
-    >
-      <div className={navbarStyles.item}>
-        <h2 className={navbarStyles.logo}>Netflix Clone</h2>
-      </div>
-      <nav className={navbarStyles.nav}>
-        <ul>
-          <li>Home</li>
-          <li>TV Shows</li>
-          <li>Movies</li>
-          <li>New & Popular</li>
-          <li>My List</li>
-          <li>Browse by Languages</li>
-        </ul>
-      </nav>
-      <div className={navbarStyles.item}>
-        <ul>
-          <li>
-            <SearchIcon fontSize="large" />
-          </li>
-          <li>Kids</li>
-          <li>DVD</li>
-          <li>
-            <NotificationsIcon fontSize="large" />
-          </li>
-          <li>
-            <Image
-              src="/images/blank-profile-picture.png"
-              alt=""
-              width={48}
-              height={48}
-              style={{ borderRadius: '5px' }}
-            />
-          </li>
-          <li
-            className={navbarStyles.dropdown}
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            {showDropdown ? (
-              <ArrowDropUpIcon fontSize="large" />
-            ) : (
-              <ArrowDropDownIcon fontSize="large" />
-            )}
-            {showDropdown && (
-              <div className={navbarStyles.dropdownMenu}>
-                <ul>
-                  <li>
-                    <PersonOutlineIcon />
-                    Account
-                  </li>
-                  <li>
-                    <HelpOutlineIcon /> Help Center
-                  </li>
-                  <li onClick={logout}>Sign out of Netflix</li>
-                </ul>
-              </div>
-            )}
-          </li>
-        </ul>
-      </div>
+    <div className={navbarStyles.wrapper}>
+      {user && (
+        <div
+          className={
+            isScrolled
+              ? `${navbarStyles.container} ${navbarStyles.scrolled}`
+              : navbarStyles.container
+          }
+        >
+          <div className={navbarStyles.item}>
+            <h2 className={navbarStyles.logo}>Netflix Clone</h2>
+          </div>
+          <nav className={navbarStyles.nav}>
+            <ul>
+              <li>Home</li>
+              <li>TV Shows</li>
+              <li>Movies</li>
+              <li>New & Popular</li>
+              <li>My List</li>
+              <li>Browse by Languages</li>
+            </ul>
+          </nav>
+          <div className={navbarStyles.item}>
+            <ul>
+              <li>
+                <SearchIcon fontSize="large" />
+              </li>
+              <li>Kids</li>
+              <li>DVD</li>
+              <li>
+                <NotificationsIcon fontSize="large" />
+              </li>
+              <li>
+                <Image
+                  src="/images/blank-profile-picture.png"
+                  alt=""
+                  width={48}
+                  height={48}
+                  style={{ borderRadius: '5px' }}
+                />
+              </li>
+              <li
+                className={navbarStyles.dropdown}
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                {showDropdown ? (
+                  <ArrowDropUpIcon fontSize="large" />
+                ) : (
+                  <ArrowDropDownIcon fontSize="large" />
+                )}
+                {showDropdown && (
+                  <div className={navbarStyles.dropdownMenu}>
+                    <ul>
+                      <li>
+                        <PersonOutlineIcon />
+                        Account
+                      </li>
+                      <li>
+                        <HelpOutlineIcon /> Help Center
+                      </li>
+                      <li onClick={logout}>Sign out of Netflix</li>
+                    </ul>
+                  </div>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

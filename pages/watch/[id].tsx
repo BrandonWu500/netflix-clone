@@ -4,7 +4,8 @@ import watchStyles from '@/styles/Watch.module.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CircularProgress } from '@mui/material';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 export type VideoType = {
   id: number;
@@ -19,6 +20,15 @@ const Watch = ({ video }: WatchProps) => {
   const {
     state: { user },
   } = useContext(AuthContext);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/register');
+    }
+  }, [router, user]);
+
   if (!user)
     return (
       <div>

@@ -9,19 +9,10 @@ type ChildrenType = {
 };
 
 const Layout = ({ children }: ChildrenType) => {
-  const {
-    state: { user },
-  } = useContext(AuthContext);
-  const router = useRouter();
-  useEffect(() => {
-    if (!user) {
-      router.push('/register');
-    }
-  }, [router, user]);
   return (
     <>
       <Meta />
-      {user && <Navbar />}
+      <Navbar />
       <main>{children}</main>
     </>
   );
