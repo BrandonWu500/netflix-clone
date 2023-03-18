@@ -1,24 +1,41 @@
 import { AuthContext } from '@/context/auth/AuthContext';
 import signinStyles from '@/styles/Signin.module.scss';
+import { CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
-const signin = () => {
+const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useContext(AuthContext);
+  const {
+    state: { user },
+  } = useContext(AuthContext);
   const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   useEffect(() => {
     // Prefetch the home page
     router.prefetch('/');
-  }, []);
+  }, [router]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     login({ user: 'test' });
     router.push('/');
   };
+
+  if (user)
+    return (
+      <div>
+        <CircularProgress size="6rem" />
+      </div>
+    );
+
   return (
     <div className={signinStyles.container}>
       <header className={signinStyles.header}>
@@ -67,4 +84,4 @@ const signin = () => {
     </div>
   );
 };
-export default signin;
+export default Signin;

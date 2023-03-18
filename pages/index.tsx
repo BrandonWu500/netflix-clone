@@ -37,7 +37,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const [trendRes, myListRes, newRes] = await Promise.all([
       fetch(`${server}/api/slides/trending`),
@@ -58,6 +58,5 @@ export const getStaticProps = async () => {
     };
   } catch (error) {
     console.log(error);
-    throw new Error();
   }
 };

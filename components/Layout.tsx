@@ -17,7 +17,7 @@ const Layout = ({ children }: ChildrenType) => {
     if (!user) {
       router.push('/register');
     }
-  }, []);
+  }, [router, user]);
   return (
     <>
       <Meta />

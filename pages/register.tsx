@@ -1,22 +1,29 @@
 import { AuthContext } from '@/context/auth/AuthContext';
 import registerStyles from '@/styles/Register.module.scss';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-const register = () => {
+const Register = () => {
   const {
     state: { user },
   } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
-    console.log(user);
     if (user) {
       router.push('/');
-      console.log('test ');
     }
-  }, []);
+  }, [user, router]);
+
+  if (user)
+    return (
+      <div>
+        <CircularProgress size="6rem" />
+      </div>
+    );
+
   return (
     <div className={registerStyles.container}>
       <div className={registerStyles.banner}>
@@ -53,4 +60,5 @@ const register = () => {
     </div>
   );
 };
-export default register;
+
+export default Register;

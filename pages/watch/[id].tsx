@@ -15,7 +15,7 @@ type WatchProps = {
   video: VideoType;
 };
 
-const watch = ({ video }: WatchProps) => {
+const Watch = ({ video }: WatchProps) => {
   const {
     state: { user },
   } = useContext(AuthContext);
@@ -51,4 +51,4 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
-export default watch;
+export default Watch;
