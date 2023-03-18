@@ -70,11 +70,13 @@ const Navbar = () => {
                 className={navbarStyles.dropdown}
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                {showDropdown ? (
-                  <ArrowDropUpIcon fontSize="large" />
-                ) : (
-                  <ArrowDropDownIcon fontSize="large" />
-                )}
+                <div className={navbarStyles.arrow}>
+                  {showDropdown ? (
+                    <ArrowDropUpIcon fontSize="inherit" />
+                  ) : (
+                    <ArrowDropDownIcon fontSize="inherit" />
+                  )}
+                </div>
                 {showDropdown && (
                   <div className={navbarStyles.dropdownMenu}>
                     <ul>

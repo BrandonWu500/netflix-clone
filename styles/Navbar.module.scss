@@ -28,6 +28,13 @@
   background-color: $bg-primary;
 }
 
+.arrow {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdown {
   cursor: pointer;
   .dropdownMenu {
